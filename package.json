@@ -13,7 +13,6 @@
     "node": ">=22.12.0 <23.0.0"
   },
   "scripts": {
-    "dev2": "tsx watch --clear-screen=false --env-file-if-exists=.env --import ./src/loaderHook.js --import ./src/instrumentation.js --enable-source-maps ./src/index.ts",
     "build": "tsup",
     "dev": "tsup --watch --silent --onSuccess \"pnpm start\"",
     "typecheck": "tsc",
