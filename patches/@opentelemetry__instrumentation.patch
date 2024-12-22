@@ -1,0 +1,16 @@
+diff --git a/hook.mjs b/hook.mjs
+index 7111b376995441955692eef55a412a1ef9a8d7c6..8ae481fb3244b78e440db6eb582296ca06866ce4 100644
+--- a/hook.mjs
++++ b/hook.mjs
+@@ -20,9 +20,10 @@
+ // This product includes software developed at Datadog (https://www.datadoghq.com/). Copyright 2021 Datadog, Inc.
+ 
+ import {
++  initialize,
+   load,
+   resolve,
+   getFormat,
+   getSource,
+ } from 'import-in-the-middle/hook.mjs';
+-export { load, resolve, getFormat, getSource };
++export { initialize, load, resolve, getFormat, getSource };

@@ -1,0 +1,14 @@
+diff --git a/hook.js b/hook.js
+index 2e1ee88ce3fe8e92cf6f0debee12123d3249f7b1..62a15ca286fc33d9a8803069df2b0394a2a73421 100644
+--- a/hook.js
++++ b/hook.js
+@@ -363,8 +363,7 @@ function createHook (meta) {
+ 
+     // Node.js v21 renames importAssertions to importAttributes
+     if (
+-      (context.importAssertions && context.importAssertions.type === 'json') ||
+-      (context.importAttributes && context.importAttributes.type === 'json')
++	  (context.importAttributes && context.importAttributes.type === 'json')
+     ) {
+       return result
+     }
