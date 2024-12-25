@@ -113,6 +113,9 @@ importers:
       dotenv:
         specifier: ^16.4.7
         version: 16.4.7
+      esbuild-plugin-version-injector:
+        specifier: ^1.2.1
+        version: 1.2.1
       eslint:
         specifier: ^9.16.0
         version: 9.17.0
@@ -1702,6 +1705,10 @@ packages:
 
   es-module-lexer@1.5.4:
     resolution: {integrity: sha512-MVNK56NiMrOwitFB7cqDwq0CQutbw+0BvLshJSse0MUNU+y1FC3bUS/AQg7oUng+/wKrrki7JfmwtVHkVfPLlw==}
+
+  esbuild-plugin-version-injector@1.2.1:
+    resolution: {integrity: sha512-OKrLqniWutFlv36lKm2lIhJS1L5hncmbC4NXWjEt2a4bcMuyZ5TcZ/idUpH1Vju5FVlGX122cYcRhkMxHlq5GA==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
 
   esbuild@0.23.1:
     resolution: {integrity: sha512-VVNz/9Sa0bs5SELtn3f7qhJCDPCF5oMEl5cO9/SSinpE9hbPVvxbd572HH5AKiP7WD8INO53GgfDDhRjkylHEg==}
@@ -4869,6 +4876,10 @@ snapshots:
       is-arrayish: 0.2.1
 
   es-module-lexer@1.5.4: {}
+
+  esbuild-plugin-version-injector@1.2.1:
+    dependencies:
+      '@sapphire/result': 2.7.2
 
   esbuild@0.23.1:
     optionalDependencies:
