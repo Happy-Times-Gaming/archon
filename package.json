@@ -6,7 +6,7 @@
   "packageManager": "pnpm@9.15.0",
   "description": "",
   "author": "Sean Latimer",
-  "license": "UNLICENSED",
+  "license": "MPL-2.0",
   "repository": "github:Happy-Times-Gaming/archon",
   "keywords": [],
   "engines": {
