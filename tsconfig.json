@@ -16,6 +16,8 @@
     },
     "resolvePackageJsonImports": true,
     "allowJs": true,
+    "declaration": false,
+    "declarationMap": false,
     "noEmit": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
