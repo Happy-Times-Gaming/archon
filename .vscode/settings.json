@@ -47,7 +47,8 @@
     "less",
     "scss",
     "pcss",
-    "postcss"
+    "postcss",
+    "github-actions-workflow"
   ],
   "json.schemas": [
     {
