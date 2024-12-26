@@ -15,7 +15,7 @@
 pre-commit:
   commands:
     lint:
-      run: pnpm lint {staged_files} --fix
+      run: pnpm lint --fix --max-warnings 0 --no-warn-ignored {staged_files}
       stage_fixed: true
 
 commit-msg:
