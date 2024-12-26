@@ -36,7 +36,6 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 COPY . .
 
-ENV NODE_ENV=production
 RUN pnpm build
 
 ###############
