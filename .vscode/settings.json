@@ -48,5 +48,22 @@
     "scss",
     "pcss",
     "postcss"
-  ]
+  ],
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "lefthook.json",
+        ".lefthook.json"
+      ],
+      "url": "https://json.schemastore.org/lefthook.json"
+    }
+  ],
+  "yaml.schemas": {
+    "https://json.schemastore.org/lefthook.json": [
+      "lefthook.yml",
+      ".lefthook.yml",
+      "lefthook.yaml",
+      ".lefthook.yaml"
+    ]
+  }
 }
