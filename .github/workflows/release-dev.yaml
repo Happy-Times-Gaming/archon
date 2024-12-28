@@ -17,5 +17,6 @@ jobs:
   release:
     if: ${{ github.repository_owner == 'Happy-Times-Gaming' }}
     uses: ./.github/workflows/shared-release.yaml
+    secrets: inherit
     with:
       ref: ${{ inputs.ref || 'dev' }}
