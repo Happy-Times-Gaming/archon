@@ -15,9 +15,7 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
     if: ${{ github.repository_owner == 'Happy-Times-Gaming' }}
-    steps:
-      - uses: ./.github/workflows/shared-release.yaml
-        with:
-          ref: ${{ inputs.ref || 'dev' }}
+    uses: ./.github/workflows/shared-release.yaml
+    with:
+      ref: ${{ inputs.ref || 'dev' }}
