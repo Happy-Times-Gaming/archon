@@ -1,4 +1,3 @@
-import { esbuildPluginVersionInjector } from 'esbuild-plugin-version-injector'
 import { defineConfig } from 'tsup'
 
 // defined folders from .sapphirerc.json
@@ -20,5 +19,4 @@ export default defineConfig({
   sourcemap: true,
   shims: false,
   keepNames: true,
-  esbuildPlugins: [esbuildPluginVersionInjector()],
 })

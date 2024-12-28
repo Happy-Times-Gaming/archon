@@ -1,0 +1,23 @@
+name: 🔖 Release (dev)
+on:
+  # runs on dev
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: The branch that is being released. Should be a branch on the given repository
+        required: true
+        type: choice
+        default: dev
+        options:
+          - dev
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'Happy-Times-Gaming' }}
+    steps:
+      - uses: ./.github/workflows/shared-release.yaml
+        with:
+          ref: ${{ inputs.ref || 'dev' }}

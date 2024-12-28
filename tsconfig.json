@@ -11,6 +11,7 @@
     "tsBuildInfoFile": "dist/.tsbuildinfo",
     "target": "ES2022",
     "baseUrl": ".",
+    "module": "ESNext",
     "paths": {
       "#*": ["./src/*"]
     },

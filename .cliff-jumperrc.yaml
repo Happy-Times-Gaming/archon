@@ -1,0 +1,9 @@
+name: archon
+monoRepo: false
+packagePath: .
+gitRepo: auto
+org: Happy-Times-Gaming
+tagTemplate: v{{new-version}}
+commitMessageTemplate: 'chore(release): release {{new-version}}'
+githubRelease: true
+pushTag: true

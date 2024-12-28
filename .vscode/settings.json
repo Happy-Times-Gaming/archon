@@ -65,6 +65,10 @@
       ".lefthook.yml",
       "lefthook.yaml",
       ".lefthook.yaml"
+    ],
+    "https://raw.githubusercontent.com/favware/cliff-jumper/main/assets/cliff-jumper.schema.json": [
+      ".cliff-jumperrc.yaml",
+      ".cliff-jumperrc.yml"
     ]
   }
 }

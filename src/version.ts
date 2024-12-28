@@ -1,4 +1,3 @@
-export const VERSION: string = '[VI]{{inject}}[/VI]'
-// eslint-disable-next-line node/prefer-global/process
-export const COMMIT = process.env.ARCHON_COMMIT ?? ''
-export const FULL_VERSION = COMMIT ? `${VERSION}-${COMMIT}` : VERSION
+import pkg from '../package.json' assert { type: 'json' }
+
+export const VERSION: string = pkg.version ?? 'dev'

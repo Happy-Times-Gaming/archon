@@ -1,0 +1,19 @@
+name: 🔖 Release
+
+on:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.repository_owner == 'Happy-Times-Gaming' }}
+    steps:
+      - uses: ./.github/workflows/shared-release.yaml
+        with:
+          ref: ${{ github.ref_name }}
