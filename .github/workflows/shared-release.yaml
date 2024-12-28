@@ -44,18 +44,16 @@ jobs:
         with:
           app-id: ${{ secrets.RELEASER_APP_ID }}
           private-key: ${{ secrets.RELEASER_APP_KEY }}
-
-      - name: ⚙️ Configure Git
-        run: |
-          # Get GitHub App User ID and set user-id output
-          user_id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)
-
-          # Set the Git configuration
-          # git remote set-url origin "https://${{ steps.app-token.outputs.token }}:x-oauth-basic@github.com/${{ github.repository }}.git"
-          git config --global user.name "${{ steps.app-token.outputs.app-slug }}[bot]"
-          git config --global user.email "${user_id}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com"
+      - name: Get GitHub App User ID
+        id: get-user-id
+        run: echo "user-id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
+      - name: ⚙️ Configure Git
+        run: |
+          git remote set-url origin "https://${{ steps.app-token.outputs.token }}:x-oauth-basic@github.com/${{ github.repository }}.git"
+          git config --global user.name "${{ steps.app-token.outputs.app-slug }}[bot]"
+          git config --global user.email "${{steps.get-user-id.outputs.user-id}}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com"
 
       - name: 🔖 Bump version & generate changelog
         run: |
