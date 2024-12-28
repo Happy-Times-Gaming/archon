@@ -1,4 +1,4 @@
-name: 🔖 Release
+name: 🔖 Release (shared)
 
 on:
   workflow_call:
@@ -64,3 +64,5 @@ jobs:
           else
             pnpm cliff-jumper --preid ${{ inputs.pre-id }} -ghrpr
           fi
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
