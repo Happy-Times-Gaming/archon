@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  workflow_call:
   push:
     branches:
       - main
@@ -22,7 +23,6 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-
       - name: 📥 Checkout
         uses: actions/checkout@v4
 

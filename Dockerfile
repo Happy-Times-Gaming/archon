@@ -1,3 +1,6 @@
+
+ARG GIT_HASH
+
 ###############
 #### BASE #####
 ###############
@@ -5,6 +8,7 @@ FROM node:22-alpine AS base
 
 WORKDIR /app
 
+ENV __GIT_HASH__=$GIT_HASH
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 ENV CI=true
@@ -33,6 +37,8 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-l
 FROM base AS builder
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+
+ENV NODE_ENV=production
 
 COPY . .
 
