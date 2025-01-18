@@ -1,6 +1,3 @@
-
-ARG GIT_HASH
-
 ###############
 #### BASE #####
 ###############
@@ -8,6 +5,7 @@ FROM node:22-alpine AS base
 
 WORKDIR /app
 
+ARG GIT_HASH
 ENV __GIT_HASH__=$GIT_HASH
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
