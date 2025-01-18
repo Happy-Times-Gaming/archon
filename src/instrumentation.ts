@@ -1,17 +1,11 @@
 import process from 'node:process'
 import { diag } from '@opentelemetry/api'
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node'
-import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-grpc'
-import { PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics'
 import { NodeSDK } from '@opentelemetry/sdk-node'
 
 // const ignoreOutgoingUpgradeRequests = new Set(['gateway.discord.gg/'])
 
 export const otelSDK = new NodeSDK({
-  // sampler: new ErrorAwareSampler(0.001),
-  metricReader: new PeriodicExportingMetricReader({
-    exporter: new OTLPMetricExporter(),
-  }),
   instrumentations: [
     ...getNodeAutoInstrumentations({
       '@opentelemetry/instrumentation-fs': {
