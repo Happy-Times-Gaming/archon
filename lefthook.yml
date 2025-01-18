@@ -4,6 +4,7 @@ pre-commit:
   parallel: true
   commands:
     typecheck:
+      glob: '{*.{js,ts},tsconfig.json}'
       run: pnpm typecheck
     lint:
       run: pnpm lint --fix --max-warnings 0 --no-warn-ignored {staged_files}
