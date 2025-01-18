@@ -5,7 +5,7 @@ on:
     workflows: [CI]
     types:
       - completed
-    branches: [main, dev]
+    branches: [dev]
 
 permissions:
   contents: read
@@ -25,7 +25,7 @@ jobs:
 
       - name: 🔢 Get HEAD commit hash
         id: get_head_hash
-        run: echo "HEAD_HASH=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+        run: echo "HEAD_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Docker meta
         id: docker-meta
