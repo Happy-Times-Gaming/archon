@@ -1,3 +1,3 @@
-import pkg from '../package.json'
+declare const __GIT_HASH__: string | undefined
 
-export const VERSION = pkg.version
+export const VERSION: string = __GIT_HASH__ ?? 'unknown'

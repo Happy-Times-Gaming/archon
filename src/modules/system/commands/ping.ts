@@ -44,7 +44,7 @@ export class UserCommand extends Command {
       const embed = new EmbedBuilder()
         .setTitle('📊 System Stats')
         .setAuthor({
-          name: `Archon v${VERSION}`,
+          name: `Archon`,
         })
         .setColor(0x00AE86)
         .addFields(
@@ -62,7 +62,7 @@ export class UserCommand extends Command {
           },
         )
         .setFooter({
-          text: `Roundtrip: ${roundTripTime}ms | Heartbeat: ${heartbeatPing}ms`,
+          text: `Roundtrip: ${roundTripTime}ms | Heartbeat: ${heartbeatPing}ms | Git SHA: ${VERSION}`,
         })
         .setTimestamp()
 

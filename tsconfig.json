@@ -11,11 +11,14 @@
     "tsBuildInfoFile": "dist/.tsbuildinfo",
     "target": "ES2022",
     "baseUrl": ".",
+    "module": "ESNext",
     "paths": {
       "#*": ["./src/*"]
     },
     "resolvePackageJsonImports": true,
     "allowJs": true,
+    "declaration": false,
+    "declarationMap": false,
     "noEmit": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
