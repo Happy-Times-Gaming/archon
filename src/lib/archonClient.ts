@@ -7,6 +7,7 @@ import { Result, SapphireClient } from '@sapphire/framework'
 import { withSpan } from './util/tracing'
 
 const tracer = trace.getTracer('discord.js')
+const excludeFromInstrumentation: Set<keyof ClientEvents> = new Set([])
 
 export class ArchonClient extends SapphireClient {
   private _instrumentedListeners?: WeakMap<
@@ -58,55 +59,20 @@ export class ArchonClient extends SapphireClient {
   }
 
   public override on<Event extends keyof ClientEvents>(event: Event, listener: (...args: ClientEvents[Event]) => void): this {
-    this.ensureInstrumentedListeners()
-    const instrumentedListener = (...args: ClientEvents[Event]) => {
-      return withSpan(
-        { name: `client.on.${String(event)}`, spanOptions: { kind: SpanKind.CONSUMER } },
-        (span) => {
-          try {
-            return listener(...args)
-          }
-          catch (error: unknown) {
-            if (error instanceof Error) {
-              span.setStatus({ code: SpanStatusCode.ERROR, message: error.message })
-            }
-            else {
-              span.setStatus({ code: SpanStatusCode.ERROR, message: String(error) })
-            }
-            throw error
-          }
-        },
-        tracer,
-      )
-    }
+    if (excludeFromInstrumentation.has(event))
+      return super.once(event, listener)
+
+    const instrumentedListener = this.instrumentListener(event, listener)
     const listenerInstances = this._instrumentedListeners!.get(listener) || []
     listenerInstances.push(instrumentedListener)
     return super.on(event, instrumentedListener)
   }
 
   public override once<Event extends keyof ClientEvents>(event: Event, listener: (...args: ClientEvents[Event]) => void): this {
-    this.ensureInstrumentedListeners()
-    const instrumentedListener = (...args: ClientEvents[Event]) => {
-      return withSpan(
-        { name: `client.once.${String(event)}`, spanOptions: { kind: SpanKind.CONSUMER } },
-        (span) => {
-          try {
-            return listener(...args)
-          }
-          catch (error: unknown) {
-            if (error instanceof Error) {
-              span.setStatus({ code: SpanStatusCode.ERROR, message: error.message })
-            }
-            else {
-              span.setStatus({ code: SpanStatusCode.ERROR, message: String(error) })
-            }
-            throw error
-          }
-        },
-        tracer,
-      )
-    }
+    if (excludeFromInstrumentation.has(event))
+      return super.once(event, listener)
 
+    const instrumentedListener = this.instrumentListener(event, listener)
     const listenerInstances = this._instrumentedListeners!.get(listener) || []
     listenerInstances.push(instrumentedListener)
     return super.once(event, instrumentedListener)
@@ -127,5 +93,29 @@ export class ArchonClient extends SapphireClient {
       super.off(event, listener)
     }
     return this
+  }
+
+  private instrumentListener<Event extends keyof ClientEvents>(event: Event, listener: (...args: ClientEvents[Event]) => void) {
+    this.ensureInstrumentedListeners()
+    return (...args: ClientEvents[Event]) => {
+      return withSpan(
+        { name: `client.once.${String(event)}`, spanOptions: { kind: SpanKind.CONSUMER } },
+        (span) => {
+          try {
+            return listener(...args)
+          }
+          catch (error: unknown) {
+            if (error instanceof Error) {
+              span.setStatus({ code: SpanStatusCode.ERROR, message: error.message })
+            }
+            else {
+              span.setStatus({ code: SpanStatusCode.ERROR, message: String(error) })
+            }
+            throw error
+          }
+        },
+        tracer,
+      )
+    }
   }
 }
