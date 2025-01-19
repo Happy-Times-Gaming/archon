@@ -1,11 +1,17 @@
 import process from 'node:process'
 import { diag } from '@opentelemetry/api'
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node'
+import { Resource } from '@opentelemetry/resources'
 import { NodeSDK } from '@opentelemetry/sdk-node'
+import { ATTR_SERVICE_NAME, ATTR_SERVICE_VERSION } from '@opentelemetry/semantic-conventions'
 
 // const ignoreOutgoingUpgradeRequests = new Set(['gateway.discord.gg/'])
 
 export const otelSDK = new NodeSDK({
+  resource: new Resource({
+    [ATTR_SERVICE_NAME]: 'archon',
+    [ATTR_SERVICE_VERSION]: import.meta.env.BUILD_SHA,
+  }),
   instrumentations: [
     ...getNodeAutoInstrumentations({
       '@opentelemetry/instrumentation-fs': {

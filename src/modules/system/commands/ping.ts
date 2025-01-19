@@ -7,7 +7,6 @@ import { EmbedBuilder } from 'discord.js'
 
 import { Command } from '#lib/sapphire'
 import { withSpan } from '#lib/util/tracing'
-import { VERSION } from '#version.js'
 
 @ApplyOptions<Command.Options>({
   name: 'ping',
@@ -64,7 +63,7 @@ export class UserCommand extends Command {
           },
         )
         .setFooter({
-          text: `Roundtrip: ${roundTripTime}ms | Heartbeat: ${heartbeatPing}ms | Git SHA: ${VERSION}`,
+          text: `Roundtrip: ${roundTripTime}ms | Heartbeat: ${heartbeatPing}ms | Git SHA: ${import.meta.env.BUILD_SHA}`,
         })
         .setTimestamp()
 
