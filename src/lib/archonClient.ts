@@ -62,7 +62,7 @@ export class ArchonClient extends SapphireClient {
     if (excludeFromInstrumentation.has(event))
       return super.once(event, listener)
 
-    const instrumentedListener = this.instrumentListener(event, listener)
+    const instrumentedListener = this.instrumentListener('on', event, listener)
     const listenerInstances = this._instrumentedListeners!.get(listener) || []
     listenerInstances.push(instrumentedListener)
     return super.on(event, instrumentedListener)
@@ -72,7 +72,7 @@ export class ArchonClient extends SapphireClient {
     if (excludeFromInstrumentation.has(event))
       return super.once(event, listener)
 
-    const instrumentedListener = this.instrumentListener(event, listener)
+    const instrumentedListener = this.instrumentListener('once', event, listener)
     const listenerInstances = this._instrumentedListeners!.get(listener) || []
     listenerInstances.push(instrumentedListener)
     return super.once(event, instrumentedListener)
@@ -95,11 +95,11 @@ export class ArchonClient extends SapphireClient {
     return this
   }
 
-  private instrumentListener<Event extends keyof ClientEvents>(event: Event, listener: (...args: ClientEvents[Event]) => void) {
+  private instrumentListener<Event extends keyof ClientEvents>(method: 'on' | 'once', event: Event, listener: (...args: ClientEvents[Event]) => void): (...args: ClientEvents[Event]) => void {
     this.ensureInstrumentedListeners()
     return (...args: ClientEvents[Event]) => {
       return withSpan(
-        { name: `client.once.${String(event)}`, spanOptions: { kind: SpanKind.CONSUMER } },
+        { name: `client.${method}.${String(event)}`, spanOptions: { kind: SpanKind.CONSUMER } },
         (span) => {
           try {
             return listener(...args)
