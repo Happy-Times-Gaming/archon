@@ -46,7 +46,7 @@ export default defineConfig({
   sourcemap: true,
   shims: false,
   keepNames: true,
-  define: {
-    __GIT_HASH__: JSON.stringify(getGitHashSync()),
+  env: {
+    BUILD_SHA: getGitHashSync(),
   },
 })
