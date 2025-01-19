@@ -12,6 +12,8 @@ import type { ServiceContainer } from '#typings.js'
 const client = new ArchonClient({
   intents: ['Guilds', 'GuildMessages', 'GuildMembers'],
   baseUserDirectory: import.meta.dirname,
+  loadDefaultErrorListeners: false,
+  loadScheduledTaskErrorListeners: false,
   presence: {
     activities: [{
       name: 'Observing the cult.',
