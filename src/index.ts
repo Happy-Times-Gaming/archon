@@ -1,5 +1,6 @@
 import '#lib/setup/init.js'
 import { container } from '@sapphire/framework'
+import { BullMQOtel } from 'bullmq-otel'
 import { ActivityType } from 'discord.js'
 import { OpenAI } from 'openai'
 import { config } from '#config.js'
@@ -17,6 +18,15 @@ const client = new ArchonClient({
       type: ActivityType.Custom,
       url: 'https://www.empyrealxiv.com/',
     }],
+  },
+  tasks: {
+    queue: '{scheduled-tasks}',
+    bull: {
+      telemetry: new BullMQOtel('bullmq'),
+      connection: {
+        url: config.redisUrl,
+      },
+    },
   },
   logger: {
     instance: logger.child({

@@ -8,7 +8,7 @@ import { withSpan } from '#lib/util/tracing'
 import { formatInteractionType, setChannelAttributes, setGuildAttributes, setUserAttributes, tracer } from './util'
 
 export class Command<PreParseReturn = Args, O extends Command.Options = Command.Options> extends BaseCommand<PreParseReturn, O> {
-  constructor(context: BaseCommand.LoaderContext, options: O) {
+  constructor(context: Command.LoaderContext, options: O) {
     super(context, options)
 
     if (this.messageRun)

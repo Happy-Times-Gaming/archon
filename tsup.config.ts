@@ -3,7 +3,7 @@ import { execaSync } from 'execa'
 import { defineConfig } from 'tsup'
 
 // defined folders from .sapphirerc.json
-const sapphireFolders = ['arguments', 'commands', 'interaction-handlers', 'listeners', 'preconditions'].flatMap(
+const sapphireFolders = ['arguments', 'commands', 'interaction-handlers', 'listeners', 'preconditions', 'scheduled-tasks'].flatMap(
   folder => [`src/${folder}/*.ts`, `src/modules/*/${folder}/*.ts`],
 )
 

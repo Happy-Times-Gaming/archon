@@ -14,6 +14,9 @@ const envSchema = type({
   'OPENAI_ORGANIZATION?': 'string',
   'OPENAI_PROJECT?': 'string',
 
+  // Redis Config
+  'REDIS_URL': 'string',
+
   // Logger Config
   'LOG_LEVEL': [
     '"silent"|"fatal" | "error" | "warn" | "info" | "debug" | "trace"',
@@ -27,6 +30,9 @@ const envSchema = type({
   // Moderation Config
   'MOD_LOG_CHANNEL_ID': 'string',
   'HONEYPOT_ROLE_ID': 'string',
+
+  // Fun Config
+  'CAPY_CHANNEL_ID': 'string',
 })
 
 const getEnv = makeTypedEnvironment((d) => {
@@ -40,3 +46,4 @@ const getEnv = makeTypedEnvironment((d) => {
 })
 
 export const config = getEnv(process.env)
+export type Config = typeof config

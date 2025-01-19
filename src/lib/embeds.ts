@@ -4,9 +4,9 @@ function base() {
   return new EmbedBuilder().setColor(0xD08132)
 }
 
-function card(title: string, description: string) {
+function card(title: string, description?: string) {
   const embed = base().setTitle(title)
-  if (description)
+  if (typeof description === 'string')
     embed.setDescription(description)
   return embed
 }
