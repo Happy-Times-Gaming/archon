@@ -8,7 +8,7 @@ export class CoreListener extends Listener<typeof Events.InteractionHandlerParse
 
     this.container.logger.error(
       {
-        error,
+        err: error,
         interaction: name,
         user_id: interaction.user.id,
         guild_id: interaction.guild?.id,

@@ -9,10 +9,10 @@ import { withSpan } from '#lib/util/tracing'
   event: Events.ChatInputCommandError,
 })
 export class CommandError extends Listener<typeof Events.ChatInputCommandError> {
-  public override async run(err: Error, context: ChatInputCommandErrorPayload) {
+  public override async run(error: Error, context: ChatInputCommandErrorPayload) {
     const { command, interaction } = context
     this.container.logger.error({
-      err,
+      err: error,
       command: command.name,
       user_id: interaction.user.id,
       guild_id: interaction.guild?.id,
