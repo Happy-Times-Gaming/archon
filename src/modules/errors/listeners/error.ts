@@ -10,6 +10,8 @@ export class ErrorListener extends Listener<typeof Events.Error> {
       span.recordException(error instanceof Error ? error : String(error))
     }
 
-    this.container.logger.error(error, 'Unknown error occurred')
+    this.container.logger.error({
+      err: error,
+    }, 'Unknown error occurred')
   }
 }

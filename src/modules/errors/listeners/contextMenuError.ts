@@ -8,7 +8,7 @@ export class CoreListener extends Listener<typeof Events.ContextMenuCommandError
   public async run(error: unknown, context: ContextMenuCommandErrorPayload) {
     const { command, interaction } = context
     this.container.logger.error({
-      error,
+      err: error,
       command: command.name,
       user_id: interaction.user.id,
       guild_id: interaction.guild?.id,

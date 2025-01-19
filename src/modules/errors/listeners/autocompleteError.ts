@@ -6,7 +6,7 @@ export class AutocompleteError extends Listener<typeof Events.CommandAutocomplet
     const { command, interaction } = payload
     this.container.logger.error(
       {
-        error,
+        err: error,
         command: command.name,
         user_id: interaction.user.id,
         guild_id: interaction.guild?.id,

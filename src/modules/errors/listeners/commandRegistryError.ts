@@ -7,7 +7,7 @@ export class CommandRegistryError extends Listener<typeof Events.CommandApplicat
   public run(error: unknown, command: Command) {
     const { name, location } = command
     this.container.logger.error({
-      error,
+      err: error,
       command: name,
       location: location.full,
     }, 'Encountered error while handling the command application command registry')
