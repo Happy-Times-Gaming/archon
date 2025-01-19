@@ -36,6 +36,7 @@ export const logger = new Logger(
       paths: redactFields,
       censor: '**GDPR COMPLIANT**',
     },
+    base: {},
     transport: config.logPretty
       ? {
           target: 'pino-pretty',
