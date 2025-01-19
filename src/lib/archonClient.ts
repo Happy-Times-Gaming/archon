@@ -99,7 +99,7 @@ export class ArchonClient extends SapphireClient {
     this.ensureInstrumentedListeners()
     return (...args: ClientEvents[Event]) => {
       return withSpan(
-        { name: `client.${method}.${String(event)}`, spanOptions: { kind: SpanKind.CONSUMER } },
+        { name: `client.${method}.${String(event)}`, spanOptions: { kind: SpanKind.SERVER } },
         (span) => {
           try {
             return listener(...args)
