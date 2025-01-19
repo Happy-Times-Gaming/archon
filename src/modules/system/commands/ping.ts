@@ -23,6 +23,8 @@ export class UserCommand extends Command {
       {
         idHints: [
           // Archon Dev
+          '1330298574579433582',
+          // Archon Stg
           '1320164612301389877',
         ],
       },
