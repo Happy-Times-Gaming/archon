@@ -61,6 +61,8 @@ export class UserCommand extends Command {
           '1330298572473761876',
           // Archon Stg
           '1320164612301389875',
+          // Archon Prod
+          '1330012533918007349',
         ],
       },
     )
