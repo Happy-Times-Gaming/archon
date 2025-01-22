@@ -2,8 +2,7 @@ import type { ApplicationCommandRegistry } from '@sapphire/framework'
 
 import process from 'node:process'
 import { ApplyOptions } from '@sapphire/decorators'
-import { isMessageInstance } from '@sapphire/discord.js-utilities'
-import { EmbedBuilder } from 'discord.js'
+import { EmbedBuilder, Message, MessageFlags } from 'discord.js'
 
 import { Command } from '#lib/sapphire'
 import { withSpan } from '#lib/util/tracing'
@@ -33,12 +32,13 @@ export class UserCommand extends Command {
   }
 
   public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-    const msg = await withSpan('command.ping.message', async () => interaction.deferReply({
-      ephemeral: true,
-      fetchReply: true,
+    const callback = await withSpan('command.ping.message', async () => interaction.deferReply({
+      withResponse: true,
+      flags: MessageFlags.Ephemeral,
     }))
 
-    if (isMessageInstance(msg)) {
+    const msg = callback.resource?.message
+    if (msg instanceof Message) {
       const roundTripTime = msg.createdTimestamp - interaction.createdTimestamp
       const heartbeatPing = Math.round(this.container.client.ws.ping)
       const processMemory = process.memoryUsage().rss
