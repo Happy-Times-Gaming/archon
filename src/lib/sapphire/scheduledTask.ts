@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-imports */
 import type { Awaitable } from '@sapphire/framework'
 import { ScheduledTask as BaseScheduledTask, type ScheduledTasksKeys, type ScheduledTasksPayload } from '@sapphire/plugin-scheduled-tasks'
 import { withSpan } from '#lib/util/tracing'

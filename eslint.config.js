@@ -61,7 +61,12 @@ export default antfu(
             {
               name: '@sapphire/framework',
               importNames: ['Listener', 'Command', 'InteractionHandler'],
-              message: 'Please import Listener from #lib/sapphire instead.',
+              message: 'Please import from #lib/sapphire instead.',
+            },
+            {
+              name: '@sapphire/plugin-scheduled-tasks',
+              importNames: ['ScheduledTask'],
+              message: 'Please import from #lib/sapphire instead.',
             },
           ],
         },

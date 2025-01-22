@@ -1,7 +1,8 @@
 import { TextChannel } from 'discord.js'
 import { config } from '#config'
 import embeds from '#lib/embeds'
-import { ScheduledTask } from '#lib/sapphire/scheduledTask'
+import { ScheduledTask } from '#lib/sapphire'
+// import { ScheduledTask } from '#lib/sapphire/scheduledTask'
 
 export class PatternTask extends ScheduledTask {
   public constructor(context: ScheduledTask.LoaderContext, options: ScheduledTask.Options) {
